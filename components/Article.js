@@ -114,3 +114,71 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+
+const articles = document.querySelector('.articles');
+
+function articleMaker({title,date,firstParagraph,secondParagraph,thirdParagraph}){
+  //create elements
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  //structure of elements
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+  article.appendChild(expandButton);
+
+  //adding class names
+  article.classList.add('article');
+  articleTitle.classList.add('h2');
+  articleDate.classList.add('date');
+  para1.classList.add('par1');
+  para2.classList.add('par2');
+  para3.classList.add('par3');
+  expandButton.classList.add('expandButton');
+
+  //set text content
+  articleTitle.textContent = title;
+  console.log(data.title);
+  articleDate.textContent = date;
+  para1.textContent = firstParagraph;
+  para2.textContent = secondParagraph;
+  para3.textContent = thirdParagraph;
+  expandButton.textContent = '+';
+
+  //event listener for span.expandButton
+  expandButton.addEventListener('click', (e) => {
+    article.classList.toggle('article-open');
+    // articleTitle.append(data.title);
+  });
+  
+
+  return article;
+};
+console.log(articleMaker);
+
+
+
+data.forEach(articleObj => {
+  const newArt = articleMaker(articleObj);
+  articles.appendChild(newArt);
+  
+});
+
+// const artElements = data.map(artObj => {
+//   const artContainer = articleMaker(artObj)
+//   return artContainer
+// })
+// artElements.forEach(artContainer => {
+//   articles.appendChild(artContainer)
+// })
+
