@@ -86,6 +86,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  { // New Article: 
+    title: 'Added article',
+    date: 'Jan 1st, 2021',
+    firstParagraph: `lorem p 1? `,
+    secondParagraph: `lorem p 2? `,
+    thirdParagraph: `lorem p 3?`
   }
 ];
 
@@ -114,3 +121,52 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+function articleMaker(articleObj) {
+  // Creating Elements:
+  const div = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const date = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const span = document.createElement('span');
+
+  // Classlist: 
+  div.classList.add('article');
+  date.classList.add('date');
+  span.classList.add('expandButton');
+
+  // Text content:
+  h2.textContent = articleObj.title;
+  date.textContent = articleObj.date;
+  p1.textContent = articleObj.firstParagraph;
+  p2.textContent = articleObj.secondParagraph;
+  p3.textContent = articleObj.thirdParagraph;
+  span.textContent = '+';
+
+  // Appent elements: 
+  div.appendChild(h2);
+  div.appendChild(date);
+  div.appendChild(p1);
+  div.appendChild(p2);
+  div.appendChild(p3);
+  div.appendChild(span);
+
+  // Event listener:
+  span.addEventListener('click', (e) => {
+    div.classList.toggle('article-open');
+    const isOpen = div.classList.contains('article-open');
+    span.textContent = isOpen ? 'Close' : '+';
+    console.log('clicked');
+  });
+  return div;
+
+}
+
+// Loop over and append:
+const articles = document.querySelector('.articles');
+data.forEach(articleObj => {
+  articles.appendChild(articleMaker(articleObj))
+});
