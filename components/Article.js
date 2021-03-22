@@ -86,25 +86,85 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'Were Adding New Elements',
+    date: 'March 16, 2020',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
+function articleMaker(articleObj) {
+  // 1 - create element 
+  let article = document.createElement("div");
+  let articleHeader = document.createElement("h2");
+  let date = document.createElement("p");
+  let paragraphOne = document.createElement("p");
+  let paragraphTwo = document.createElement("p");
+  let paragraphThree = document.createElement("p");
+  let paragraphFour = document.createElement("p")
+  let buttonSpan = document.createElement("span");
+
+//attach 
+
+
+  article.appendChild(articleHeader);
+  article.appendChild(date);
+  article.appendChild(paragraphOne);
+  article.appendChild(paragraphTwo);
+  article.appendChild(paragraphThree);
+  article.appendChild(paragraphFour)
+  article.appendChild(buttonSpan);
+
+  // 3 - Add class names - adding formatting to text.
+  article.classList.add("article");
+  date.classList.add("date");
+  buttonSpan.classList.add("expandButton");
+
+  // 4 - Set text content in the individual boxes
+  articleHeader.textContent = articleObj.title;
+  date.textContent = articleObj.date;
+  paragraphOne.textContent = articleObj.firstParagraph;
+  paragraphTwo.textContent = articleObj.secondParagraph;
+  paragraphThree.textContent = articleObj.thirdParagraph;
+  paragraphFour.textContent = articleObj.fourthParagraph;
+  buttonSpan.textContent = "o";
+
+ 
+  //  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
+ //This listener should toggle the class 'article-open' on div.article.
+
+  buttonSpan.addEventListener("click", () => {
+    article.classList.toggle("article-open");
+  });
+  return article;
+}
+
+let articlesInner = document.querySelector('.articles');
+data.forEach( item => {
+  let newArticle = articleMaker(item);
+  articlesInner.appendChild(newArticle);
+});  
+
 /*
-  Step 1: Write a component called 'articleMaker' to create an article.
-  Your component is a function that takes an article object as its only argument,
-  and returns a DOM node looking like the one below:
 
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
 
-    {three separate paragraph elements}
 
-    <span class="expandButton">+</span>
-  </div>
 
-  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
-  This listener should toggle the class 'article-open' on div.article.
+
+
 
   Step 3: Don't forget to return something from your function!
 
