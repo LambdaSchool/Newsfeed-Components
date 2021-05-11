@@ -86,6 +86,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Professional Software Development in 2021',
+    date: 'Jan 1st, 2021',
+    firstParagraph: `Aaron hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Summer, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Amlak hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -113,4 +129,43 @@ const data = [
 
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
-*/
+  
+*/ 
+let div = document.querySelector(".articles");
+let newDiv = document.createElement("div");
+newDiv.classList.add(".article")
+function articleMaker(article){
+   
+    let result = article.map(item=>{
+    let createH2 = document.createElement("h2");
+        createH2.textContent = `${item.title}`;
+        newDiv.appendChild(createH2);
+    let createP = document.createElement("p");
+        createP.classList.add("date");
+        createP.textContent =`${item.date}`;
+    let createfirst = document.createElement("p") ;
+    let createsecond = document.createElement("p") ;
+    let createthird = document.createElement("p") ;
+        createfirst.textContent = `First :${item.firstParagraph}`
+        createsecond.textContent = `Second :${item.secondParagraph}` 
+        createthird.textContent = `Third :${item.thirdParagraph}`        
+        newDiv.appendChild(createfirst);
+        newDiv.appendChild(createsecond);
+        newDiv.appendChild(createthird);
+        
+  })
+  
+   return result;        
+}
+articleMaker(data)
+    let button = document.createElement("span");
+      button.textContent="+";
+       button.classList.add(".expandButton")
+      div.appendChild(button);
+   
+  let menuButton = document.querySelector("span");
+  menuButton.addEventListener("click", ()=>{
+     newDiv.classList.toggle(".article--open")
+     console.log("cleicked")
+  })
+
