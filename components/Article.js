@@ -114,3 +114,49 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  const art = document.createElement('div')
+  const title1 = document.createElement('h2')
+  const date1 = document.createElement('p')
+  const paragraph1 = document.createElement('p')
+  const paragraph2 = document.createElement('p')
+  const paragraph3 = document.createElement('p')
+  const button = document.createElement('span')
+  const exit = document.createElement('button')
+
+  art.appendChild(title1)
+  art.appendChild(date1)
+  art.appendChild(paragraph1)
+  art.appendChild(paragraph2)
+  art.appendChild(paragraph3)
+  art.appendChild(button)
+  art.appendChild(exit)
+
+  art.classList.add('article')
+  date1.classList.add('date')
+  button.classList.add('expandButton')
+
+  title1.textContent = title
+  date1.textContent = date
+  paragraph1.textContent = firstParagraph
+  paragraph2.textContent = secondParagraph
+  paragraph3.textContent = thirdParagraph
+  button.textContent = 'expand'
+  exit.textContent = 'Exit'
+
+  button.addEventListener('click', event => {
+    art.classList.toggle('article-open')
+  })
+
+  exit.addEventListener('click', event => {
+    art.style.display = 'none'
+  })
+
+  return art
+}
+
+const articles = document.querySelector('.articles')
+data.map(el => {
+  articles.appendChild(articleMaker(el.title, el.date, el.firstParagraph, el.secondParagraph, el.thridParagraph))
+})
